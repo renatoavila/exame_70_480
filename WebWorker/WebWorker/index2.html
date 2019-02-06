@@ -1,0 +1,103 @@
+﻿<html>
+<head>
+    <style>
+        fieldset { width: 800px }
+    </style>
+    <script src="canvas.js"></script>
+    <script>
+        function sleep(sleepDuration) {
+            var now = new Date().getTime();
+            while (new Date().getTime() < now + sleepDuration) { /* do nothing */ }
+        }
+
+        function Limpar() {
+            var result = document.getElementById("workResult");
+            result.innerText = "";
+        }
+
+        function SemUsarWorker() {
+            var result = document.getElementById("workResult");
+            result.innerText = "";
+            var work = 11;
+            var i = 0;
+            var a = new Array(work);
+            var sum = 0;
+            for (i = 0; i < work; i++) {
+                result.innerText = i;
+                sleep(1000);
+            }
+        }
+
+        var worker;
+
+        function UsandoWorker() {
+            var result = document.getElementById("workResult");
+            result.innerText = "";
+            worker = new Worker("teste_workers2.js");
+            worker.onmessage = function (evt) {
+                try {
+                    result.innerText = evt.data;
+                } catch (e) {
+                    alert(e.message);
+                }
+            };
+            worker.onerror = function (err) {
+                alert(err.message + err.filename + err.lineno);
+            };
+            worker.postMessage("");
+        }
+        function Parar() {
+            worker.terminate();
+            worker = undefined;
+        }
+
+        function UsandoWorkerMensagem() {
+
+            var workerMensagem = new Worker("teste_workers3.js");
+            workerMensagem.onmessage = function (evt) {
+                try {
+                    var result = document.getElementById("workResult");
+                    result.innerText = evt.data;
+                } catch (e) {
+                    alert("ERRO1" + e.message);
+                }
+            };
+            workerMensagem.onerror = function (err) {
+                alert("ERRO2:" + err.message + err.filename + err.lineno);
+            };
+
+            var txtMensagem = document.getElementById("txtMensagem").value;
+            workerMensagem.postMessage(txtMensagem);
+        }
+    </script>
+</head>
+<body>
+    <section>
+        <fieldset>
+            <legend>Sem usar Worker:</legend>
+            <input type="button" value="Iniciar" onclick="SemUsarWorker();" />
+        </fieldset>
+        <fieldset>
+            <legend>Com Worker:</legend>
+            <input type="button" value="Iniciar" onclick="UsandoWorker();" />
+            <input type="button" value="Parar" onclick="Parar();" />
+        </fieldset>
+        <fieldset>
+            <legend>Worker passando parametro:</legend>
+            <input id="txtMensagem" type="text" value="" />
+            <input type="button" value="Enviar mensagem" onclick="UsandoWorkerMensagem();" />
+        </fieldset>
+        <fieldset>
+            <legend>Resultado:</legend>
+            <input type="button" value="Limpar" onclick="Limpar();" />
+            <span id="workResult"> </span>
+        </fieldset>
+    </section>
+
+    <canvas id="c" width="824" height="350" style="border: 2px groove threedface; position: absolute; top:240px; left: 10px;"></canvas>
+    <input id="speedy" type="range" min="0" max="10" value="10" style="position:relative; visibility:hidden;" step="1" />
+
+
+
+</body>
+</html>

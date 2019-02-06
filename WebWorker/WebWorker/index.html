@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+
+    <p>Contador: <output id="result"></output></p>
+    <button onclick="startWorker()">Iniciar Worker</button>
+    <button onclick="stopWorker()">Finalizar Worker</button>
+
+    <p>
+        <strong>Atenção:</strong>
+        O Internet Explorer 9 e versões anteriores não suportam Web Workers.
+    </p>
+
+    <script>
+        var w;
+        function startWorker() {
+            if (typeof (Worker) !== "undefined") {
+                if (typeof (w) === "undefined") {
+                    w = new Worker("teste_workers.js");
+                }
+                w.onmessage = function (event) {
+                    document.getElementById("result").innerHTML = event.data;
+                };
+            } else {
+                document.getElementById("result").innerHTML = "Seu navegador não suporta Web Workers";
+            }
+        }
+
+        function stopWorker() {
+            if (typeof (w) !== "undefined") {
+                w.terminate();
+                w = undefined;
+                document.getElementById("result").innerHTML = 'Worker finalizado';
+            } else {
+                alert('Worker já foi finalizado');
+            }
+
+        }
+    </script>
+
+</body>
+</html>
