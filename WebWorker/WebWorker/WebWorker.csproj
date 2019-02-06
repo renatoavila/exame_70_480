@@ -43,7 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="canvas.js" />
     <Content Include="index2.html" />
+    <Content Include="teste_workers3.js" />
+    <Content Include="teste_workers2.js" />
     <Content Include="teste_workers.js" />
     <Content Include="index.html" />
     <Content Include="Web.config" />
