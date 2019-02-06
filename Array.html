@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <title>Array</title>
+  </head>
+  <body>
+   <p>Ver console</p>
+  </body>
+  <script>  
+	var frutas = ['Maçã', 'Banana'];
+	console.log(frutas);
+	
+	console.log('------------------------------------------');
+	console.log('Length');
+	console.log(frutas.length);
+	
+	console.log('------------------------------------------');
+	console.log('Acessando primeiro e ultimo elemento');
+	var primeiro = frutas[0];
+	console.log(primeiro);
+	var ultimo = frutas[frutas.length - 1];
+	console.log(ultimo);
+	
+	console.log('------------------------------------------');
+	console.log('forEach');
+	frutas.forEach(function (item, indice, array) {
+	  console.log(item, indice);
+	});
+	
+	console.log('------------------------------------------');
+	console.log('Adicionar um item ao final do Array - PUSH');
+	var adicionar = frutas.push('Laranja');
+	console.log(adicionar);
+	console.log(frutas);
+	
+	console.log('------------------------------------------');
+	console.log('Remover um item do final do Array - POP');
+	var ultimo = frutas.pop();
+	console.log(ultimo);
+	console.log(frutas);
+	
+	console.log('------------------------------------------');
+	console.log('Remover do início do Array - SHIFT');
+	var primeiro = frutas.shift(); 
+	console.log(primeiro);
+	console.log(frutas);
+	
+	console.log('------------------------------------------');
+	console.log('Adicionar ao início do Array - UNSHIFT');
+	var adicionar = frutas.unshift('Morango')	
+	console.log(adicionar);
+	console.log(frutas);
+	
+	console.log('------------------------------------------');
+	console.log('Procurar o índice de um item na Array - indexOf');
+	console.log(frutas);
+	frutas.push('Manga');
+	console.log(frutas);
+	console.log('indexOf("Banana")');
+	var pos = frutas.indexOf('Banana');
+	console.log(pos);
+	
+	console.log('------------------------------------------');
+	console.log('Remover itens de uma posição de índice');
+	var vegetais = ['Repolho', 'Nabo', 'Rabanete', 'Cenoura'];
+	console.log(vegetais);  
+	var pos = 1, n = 2;
+	var itensRemovidos = vegetais.splice(pos, n); 
+	// Isso é como se faz para remover itens, n define o número de itens a se remover,
+	// a partir da posição (pos) em direção ao fim da array.
+	console.log(vegetais); 
+	// ['Repolho', 'Cenoura'] (o array original é alterado)
+	console.log(itensRemovidos); 
+	// ['Nabo', 'Rabanete']
+	
+	console.log('------------------------------------------');
+	console.log('Copiar um Array');
+	var copiar = frutas.slice();
+	console.log(copiar); 
+	
+	console.log('------------------------------------------');
+	console.log('Accessando elementos de um array');
+	var arr = ['este é o primeiro elemento', 'este é o segundo elemento'];
+	console.log(arr[0]);              // exibr 'este é o primeiro elemento'
+	console.log(arr[1]);              // exibe 'este é o segundo elemento'
+	console.log(arr[arr.length - 1]); // exibe 'este é o segundo elemento'
+	
+	
+	console.log('------------------------------------------');
+	var promessa = {
+	  'var': 'texto',
+	  'array': [1, 2, 3, 4]
+	}; 
+	console.log(promessa['var']);
+	console.log(promessa['array']);
+	console.log(promessa['array'][2]);
+	console.log(Object.keys(promessa));
+	
+	console.log('------------------------------------------');
+	var frutas = [];
+	frutas.push('banana', 'maça', 'pêssego');
+	console.log(frutas.length); // 3
+	frutas[5] = 'manga';
+	console.log(frutas); // 'manga'
+	console.log(frutas[5]); // 'manga'
+	console.log(Object.keys(frutas)); // ['0', '1', '2', '5']
+	console.log(frutas.length); // 6
+	 
+	console.log('------------------------------------------');
+	var vegetais = ['Repolho', 'Nabo', 'Rabanete', 'Cenoura'];
+	console.log(vegetais);
+	console.log(vegetais.join()); 
+	console.log(vegetais.join('+')); 
+	console.log(vegetais.toSource());
+	console.log(vegetais.toString());
+	console.log(vegetais.toLocaleString());
+	
+	console.log('------------------------------------------');
+	console.log('JavaScript Demo: Array.entries()');
+	var array1 = ['a', 'b', 'c'];
+	var iterator1 = array1.entries();
+	console.log(iterator1.next().value);
+	// expected output: Array [0, "a"]
+	console.log(iterator1.next().value);
+	// expected output: Array [1, "b"]
+	
+	console.log('------------------------------------------');
+	console.log('JavaScript Demo: Array.every()');
+	function isBelowThreshold(currentValue) {
+	  return currentValue < 40;
+	}
+	var array1 = [1, 30, 39, 29, 10, 13];
+	console.log(array1.every(isBelowThreshold));
+	// expected output: true
+	
+	console.log('------------------------------------------');
+	console.log('JavaScript Demo: Array.find()');
+	var array1 = [5, 12, 8, 130, 44];
+	var found = array1.find(function(element) {
+	  return element > 10;
+	});
+	console.log(found); 
+  
+	console.log('------------------------------------------');
+	console.log('JavaScript Demo: Array.forEach()');
+	var array1 = ['a', 'b', 'c'];
+	array1.forEach(function(element) {
+	  console.log(element);
+	});
+ 
+	console.log('------------------------------------------');
+	console.log('Exemplo: Criando um array');
+	var msgArray = new Array();
+	msgArray[0] = "Hello";
+	msgArray[99] = "world";
+	console.log(msgArray); 
+	if (msgArray.length == 100)
+	    console.log("O length é 100.");
+	  
+	console.log('------------------------------------------');
+	console.log('Exemplo: Criando um array bi-dimensional');
+	var board = 
+	[ ['R','N','B','Q','K','B','N','R'],
+	  ['P','P','P','P','P','P','P','P'],
+	  [' ',' ',' ',' ',' ',' ',' ',' '],
+	  [' ',' ',' ',' ',' ',' ',' ',' '],
+	  [' ',' ',' ',' ',' ',' ',' ',' '],
+	  [' ',' ',' ',' ',' ',' ',' ',' '],
+	  ['p','p','p','p','p','p','p','p'],
+	  ['r','n','b','q','k','b','n','r']];
+	console.log(board.join('\n') + '\n\n'); 
+	// Fazendo o King's Pawn avançar 2
+	board[4][4] = board[6][4];
+	board[6][4] = ' ';
+	console.log(board.join('\n'));
+   
+   	console.log('------------------------------------------');
+	console.log('Utilizando um array para tabular um conjunto de valores');
+	values = [];
+	for (var x = 0; x < 10; x++){
+	 values.push([
+	  2 ** x,
+	  2 * x ** 2
+	 ])
+	};
+	console.table(values); 
+
+   	console.log('------------------------------------------');
+	console.log('get api de cep');		
+	 let url = 'https://viacep.com.br/ws/13036265/json/';
+	fetch(url)
+	.then(res => res.json())
+	.then((out) => {
+	  console.table(out);
+	  console.log(out);
+	})
+	.catch(err => { throw err });
+
+
+	
+  </script>
+</html>
