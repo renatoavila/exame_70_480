@@ -1,0 +1,59 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>websocket client</title>
+    <script type="text/javascript">
+        var start = function () {
+            var inc = document.getElementById('incomming');
+            var wsImpl = window.WebSocket || window.MozWebSocket;
+            var form = document.getElementById('sendForm');
+            var input = document.getElementById('sendText');
+
+            inc.innerHTML += "Conectando com o servidor...<br/>";
+
+            // create a new websocket and connect
+            window.ws = new wsImpl('ws://192.168.15.50:8181/');
+
+            // when data is comming from the server, this metod is called
+            ws.onmessage = function (evt) {
+                inc.innerHTML += evt.data + '<br/>';
+            };
+
+            // when the connection is established, this method is called
+            ws.onopen = function () {
+                inc.innerHTML += 'Conexão aberta<br/>';
+            };
+
+            // when the connection is closed, this method is called
+            ws.onclose = function () {
+                inc.innerHTML += 'Conexão fechada<br/>';
+            };
+			
+			ws.onerror = function (err) {
+			 inc.innerHTML +=  "Ocorreu um erro.<br/>";
+			} 
+			
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var val = input.value;
+				if (ws.readyState == wsImpl.OPEN) {
+					 //send message to server.
+					 ws.send(val);
+					 input.value = "";
+				 }else{
+					alert('Você perdeu sua conexão. Aperte F5.');
+				 }
+				 
+            });
+
+        };
+        window.onload = start;
+    </script>
+</head>
+<body>
+	<form id="sendForm">
+		<input id="sendText" placeholder="Digite sua mensagem" />
+	</form>
+    <pre id="incomming"></pre>
+</body>
+</html>

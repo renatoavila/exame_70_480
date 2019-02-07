@@ -1,0 +1,59 @@
+﻿<!DOCTYPE HTML>
+<html>
+   <head>
+	
+      <script type="text/javascript">
+       
+         function WebSocketTest()
+         {
+            if ("WebSocket" in window)
+            {
+               alert("Seu navegador suporta WebSocket!");   
+			   
+               // Let us open a web socket
+               var ws = new WebSocket("ws://192.168.15.50:8181/");			
+			   
+               ws.onopen = function()
+               {
+                  // Web Socket is connected, send data using send()
+                  ws.send("Mensagem enviada por Fluxo.html");
+                  alert("Mensagem enviada para o WebSocket");
+               };
+				
+               ws.onmessage = function (evt) 
+               { 
+                  var received_msg = evt.data;
+                  alert("Mensagem recebida!"  );
+               };
+				
+               ws.onclose = function()
+               { 
+                  // websocket is closed.
+                  alert("Conexão fechada."); 
+               };
+					
+               window.onbeforeunload = function(event) {
+                  ws.close();
+               };
+            }            
+            else
+            {
+               // The browser doesn't support WebSocket
+               alert("Seu navegador NÃO suporta WebSocket!");
+            }
+         }
+        
+      </script>
+		
+   </head>
+   <body>
+   
+      <div id="sse">
+         <input type="button" value="Rodar WebSocket" onclick="WebSocketTest()"/>
+      </div>
+   
+    
+   </body>
+</html>
+</html>
+</html>

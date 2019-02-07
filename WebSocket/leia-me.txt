@@ -1,0 +1,1 @@
+executar o ".exe" dentro da pasta \WebSocketConsole antes de começar o teste
