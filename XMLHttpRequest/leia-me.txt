@@ -1,0 +1,1 @@
+rodar no mozilla firefox por causa do CORS 

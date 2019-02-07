@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+  <h2>XMLHttpRequest Object</h2>
+  <p id="demo"></p>
+  <button type="button" onclick="loadDoc()">Executar</button>
+
+  <script>
+   function loadDoc() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("demo").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "arquivo.json", true ); 
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send();    
+  }
+  </script>
+</body>
+</html>
