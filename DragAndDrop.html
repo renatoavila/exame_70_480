@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html  lang="pt-BR">
+<head>
+
+<meta charset="UTF-8" /> 
+
+<style>
+#div0,#div1,#div2 ,#div3 {
+	float:left;
+ 	width: 50px;
+ 	height: 300px;
+ 	padding: 10px;
+ 	border: 1px solid #aaaaaa;
+ 	margin:0 10px 10px 0;
+}
+.drag{ 
+ 	width: 50px;
+ 	height: 50px;
+ 	float:left; 
+}
+#drag1{ 
+ 	background-color: #000
+}
+#drag2{ 
+ 	background-color: red
+}
+#drag3{ 
+ 	background-color: green
+}
+#drag4{ 
+ 	background-color: yellow
+}
+
+.drag.efeito
+{
+        -webkit-transform: scale(1.3);
+        -ms-transform: scale(1.3);
+        transform: scale(1.3);
+}
+</style>
+<script>
+function drag(ev) { 
+	ev.dataTransfer.setData("text", ev.target.id);	
+	console.log('--------------');
+	console.log('ondragstart:drag');
+}
+
+function allowDrop(ev) { 
+	ev.preventDefault(); 	 
+	console.log('ondragover:allowDrop');
+}
+ 
+function drop(ev) {
+	ev.preventDefault();
+	var data = ev.dataTransfer.getData("text");	 
+	ev.target.appendChild(document.getElementById(data));
+	console.log('ondrop:drop');	
+	console.log('--------------');
+}
+ 
+function Caixa1() { 
+ var div0 = document.getElementById("div0")
+ div0.appendChild(document.getElementById("drag1"));
+ div0.appendChild(document.getElementById("drag2"));
+ div0.appendChild(document.getElementById("drag3"));
+ div0.appendChild(document.getElementById("drag4")); 
+} 
+ 
+</script>
+</head>
+<body >
+
+<div id="div0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+<button onclick="Caixa1()">Zerar</button><br />
+<div id="drag1" class="drag" draggable="true" ondragstart="drag(event)"></div>
+<div id="drag2" class="drag" draggable="true" ondragstart="drag(event)"></div>
+<div id="drag3" class="drag" draggable="true" ondragstart="drag(event)"></div>
+<div id="drag4" class="drag" draggable="true" ondragstart="drag(event)"></div>
+
+
+
+</body>
+</html>

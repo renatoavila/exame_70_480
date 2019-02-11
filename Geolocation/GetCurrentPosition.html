@@ -1,0 +1,35 @@
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <title>Localização</title>
+  </head>
+  <body>
+    <div id="geoResults">
+		<p>Current Location is:</p>
+	</div>
+  </body>
+  <script>  
+	 window.onload = function () {
+								 var geoLocator = window.navigator.geolocation;
+								 var posOptions = {enableHighAccuracy: true,timeout: 45000};
+								 geoLocator.getCurrentPosition(successPosition, errorPosition,
+								 posOptions);
+	 }
+
+	function successPosition(pos) {
+								var sp = document.createElement("p");
+								sp.innerText = "Latitude: " + pos.coords.latitude +
+								" Longitude: " + pos.coords.longitude;
+								document.getElementById("geoResults").appendChild(sp);
+	}
+	function errorPosition(err) {
+								var sp = document.createElement("p");
+								sp.innerText = "error: " + err.message; + " code: " + err.code;
+								document.getElementById("geoResults").appendChild(sp);
+	}
+  </script>
+</html>
+ 
+ </body

@@ -1,0 +1,43 @@
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <title>LocalStorage</title>
+  </head>
+  <body>
+     ver console
+  </body>
+  <script>  
+	if(typeof(Storage) != "undefine")
+	{
+		// teste 1
+		localStorage.setItem("primara_chave","olá mundo");
+		localStorage.setItem("segunda_chave","olá mundo 2");
+		var valor = localStorage.getItem("primara_chave");
+		console.log(valor);
+		valor = localStorage.getItem("segunda_chave");
+		console.log(valor);		
+		valor = localStorage.segunda_chave;
+		console.log(valor);		
+		localStorage.removeItem("segunda_chave");
+		
+		//teste 2
+		if(localStorage.visitas)
+		{
+			localStorage.visitas  = Number(localStorage.visitas) + 1;
+		}
+		else
+		{
+			localStorage.visitas = 1; 
+		}
+		console.log('visitas: ' + localStorage.visitas);		
+	}
+	else
+	{
+		alert('sem suporte  Storage');
+	}
+  </script>
+</html>
+ 
+ </body
