@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SVG</title>  
+<script language="javascript">
+ function Red(evt) {
+	 var circle = evt.target;
+	 circle.setAttribute("style", "fill: red");
+ }
+ function Green(evt) {
+	 var circle = evt.target;
+	 circle.setAttribute("style", "fill: green");
+ }
+ 
+</script>
+</head>
+<body>
+<div style="float:left; width:100%; height:700px;">
+	 
+	<svg>
+		 <rect id="lightStandard" x="100" y="100" width="60" height="500" fill="black"/>
+		 <circle id="redLight" cx="129" cy="145" r="25" fill="red"/>
+		 <circle id="amberLight" cx="129" cy="205" r="25" fill="yellow"/>
+		 <circle id="greenLight" cx="129" cy="265" r="25" fill="green"/>
+	</svg>
+	<svg>
+		<circle id="Circle" cx="50" cy="50" r="50" fill="green" onmouseover="Red(evt)"
+		onmouseout="Green(evt)"/>
+	</svg>
+</div>
+</body>
+</html>
